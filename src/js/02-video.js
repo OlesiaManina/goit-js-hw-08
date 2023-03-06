@@ -14,5 +14,11 @@ localStorage.setItem(STORAGE_KEY, currentTime);
 };
 
 player.on('timeupdate', throttle(onPlay, 1000));
+checkStorage();
 
-player.setCurrentTime(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+
+function checkStorage() {
+    if (STORAGE_KEY) {
+        player.setCurrentTime(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+    }
+}

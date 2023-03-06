@@ -5,7 +5,10 @@ const inputRef = formRef.querySelector('input');
 const textAreaRef = formRef.querySelector('textarea');
 
 const STORAGE_KEY = "feedback-form-state";
-let objectOfValues = {};
+let objectOfValues = {
+    email: "",
+    message: "",
+};
 
 checkSavedValues();
 
@@ -15,10 +18,9 @@ formRef.addEventListener('submit', onFormSubmit);
 function handleInput(event) {
     if (event.currentTarget) {
     const {elements: {email, message}} = event.currentTarget;
-    let objectOfValues = {
-    email: email.value,
-    message: message.value
-}
+    objectOfValues.email = email.value,
+    objectOfValues.message = message.value
+
 }
 
 localStorage.setItem(STORAGE_KEY, JSON.stringify(objectOfValues));
@@ -27,14 +29,18 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify(objectOfValues));
 
 function onFormSubmit(event) {
     event.preventDefault();
-const {elements: {email, message}} = event.currentTarget;
-const objectOfValues = {
-    email: email.value,
-    message: message.value
-}
-console.log(objectOfValues);
-event.currentTarget.reset();
-localStorage.removeItem(STORAGE_KEY);
+    const {elements: {email, message}} = event.currentTarget;
+
+    if (email.value !== "" && message.value !== "") {
+    objectOfValues.email = email.value,
+    objectOfValues.message = message.value
+    console.log(objectOfValues);
+    event.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+    } else {
+        alert('Заповніть обидва поля, будь ласка)');
+    }
+
 
 }
 
