@@ -4,7 +4,7 @@ const formRef = document.querySelector('form');
 const inputRef = formRef.querySelector('input');
 const textAreaRef = formRef.querySelector('textarea');
 
-STORAGE_KEY = "feedback-form-state";
+const STORAGE_KEY = "feedback-form-state";
 let objectOfValues = {};
 
 checkSavedValues();
