@@ -18,7 +18,8 @@ checkStorage();
 
 
 function checkStorage() {
-    if (STORAGE_KEY) {
+   
+    if (STORAGE_KEY !== "") {
         player.setCurrentTime(JSON.parse(localStorage.getItem(STORAGE_KEY)));
     }
 }
